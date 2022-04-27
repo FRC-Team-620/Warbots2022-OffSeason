@@ -15,12 +15,12 @@ public class SingleXboxControlBoard implements IControlBoard{
 
     @Override
     public double getForwardSpeed() {
-        return mControler.getRightX();
+        return -mControler.getLeftY();
     }
 
     @Override
     public double getDriveRotation() {
-        return mControler.getRightY();
+        return mControler.getLeftX();
     }
     
 }

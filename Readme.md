@@ -11,6 +11,7 @@ TODOs:
 - Think hard into how dependant subsystems would pass data/be structured together.
 - Fix log output directory not working in sim
 - Find a way to switch between replay mode and Sim realtime mode without code changes
+- Decide on naming scheme for motor contolers vice ports (Front left right right) voice left folower left leader 
 
 Cons:
 - This Framework prevents the use of Motor controlers within classes like DifferentalDriveTrain This may end up being an issue for sqwerve
@@ -19,3 +20,14 @@ Cons:
 
 Ideas:
 - Should we just build IO layers for sensor and hardware interfaces vice at a subsystem level? IE MotorcontrolerIO and have the thing extend a motor controler or sparkmax for backwards compatability?
+
+
+Rename Class names and input/out
+- 
+
+
+
+
+
+After Release:
+Per Robot/IO pin assighments

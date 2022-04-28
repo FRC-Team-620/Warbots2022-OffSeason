@@ -3,12 +3,13 @@ package org.jmhsrobotics.offseason2022.subsystems.drivetrain;
 import org.littletonrobotics.junction.LogTable;
 import org.littletonrobotics.junction.inputs.LoggableInputs;
 
-public interface DrivetrainIO {
+public interface IDrivetrainIO {
     /** The set of loggable inputs for the drive subsystem. */
-    public static class DrivetrainIOInputs implements LoggableInputs {
+    public static class DrivetrainHardwareOutputs implements LoggableInputs {
         public double leftPosition = 0.0; // Meters
         public double rightPosition = 0.0;
         public double yaw = 0.0;
+        // public C
         // public double leftVelocityRadPerSec = 0.0;
         // public double leftAppliedVolts = 0.0;
         // public double[] leftCurrentAmps = new double[] {};
@@ -95,18 +96,10 @@ public interface DrivetrainIO {
     }
 
     /** Updates the set of loggable inputs. */
-    public void updateInputs(DrivetrainIOInputs inputs);
+    public void updateHardwareOutputs(DrivetrainHardwareOutputs outputs);
 
-    /** Run open loop at the specified voltage. */
-    public void setVoltage(double leftVolts, double rightVolts);
-
-    /** Run closed loop at the specified velocity. */
-    public void setVelocity(double leftVelocityRadPerSec,
-            double rightVelocityRadPerSec, double leftFFVolts, double rightFFVolts);
-
+    public void set(double leftpercent, double rightprecent);
     /** Enable or disable brake mode. */
     public void setBrakeMode(boolean enable);
 
-    /** Set velocity PID constants. */
-    public void configurePID(double kp, double ki, double kd);
 }

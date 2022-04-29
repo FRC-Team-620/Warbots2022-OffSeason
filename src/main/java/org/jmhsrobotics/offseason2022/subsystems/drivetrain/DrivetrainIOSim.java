@@ -28,9 +28,9 @@ public class DrivetrainIOSim implements IDrivetrainIO {
     @Override
     public void updateHardwareOutputs(DrivetrainHardwareOutputs outputs) {
         m_drivetrainSimulator.update(Constants.kSimUpdateTime);
-        outputs.leftPosition = m_drivetrainSimulator.getLeftPositionMeters();
-        outputs.rightPosition = m_drivetrainSimulator.getRightPositionMeters();
-        outputs.yaw = Rotation2d.fromDegrees(m_drivetrainSimulator.getHeading().getDegrees()).getDegrees();// limit
+        outputs.leftPositionMeters = m_drivetrainSimulator.getLeftPositionMeters();
+        outputs.rightPositionMeters = m_drivetrainSimulator.getRightPositionMeters();
+        outputs.yawDegrees = Rotation2d.fromDegrees(m_drivetrainSimulator.getHeading().getDegrees()).getDegrees();// limit
                                                                                                            // +-180
 
     }

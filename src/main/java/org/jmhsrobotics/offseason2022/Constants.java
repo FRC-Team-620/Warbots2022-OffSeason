@@ -19,7 +19,7 @@ import edu.wpi.first.math.util.Units;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-
+    //TODO: Clean up
     public static final double gearRatio = 0.12;
     public static final double kTrackwidthMeters = 0.64;// 0.5207
     public static final double wheelDiameterInInches = 6; // TODO: Be more clear on if this is A drive wheel or shooter
@@ -40,4 +40,7 @@ public final class Constants {
     public static final double kSimClimberGearRatio = 1;
     public static final double kSimClimberDrumSize = 0.2;
     public static final double ksimClimberMaxHeight = Units.feetToMeters(6);
+
+
+    public static final double kIntakeSwitchDebounceTime = 0.1;
 }

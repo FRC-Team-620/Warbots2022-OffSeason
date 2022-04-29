@@ -8,7 +8,7 @@ package org.jmhsrobotics.offseason2022;
 import org.jmhsrobotics.offseason2022.commands.drivetrain.OpenLoopDrive;
 import org.jmhsrobotics.offseason2022.subsystems.drivetrain.DrivetrainIOSim;
 import org.jmhsrobotics.offseason2022.subsystems.drivetrain.DrivetrainIOSparkMAX;
-import org.jmhsrobotics.offseason2022.subsystems.drivetrain.DrivetrainSubsystem;
+import org.jmhsrobotics.offseason2022.subsystems.drivetrain.Drivetrain;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.RobotBase;
@@ -24,15 +24,15 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
-  DrivetrainSubsystem driveTrain;
+  Drivetrain driveTrain;
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
     if(RobotBase.isReal()){
-      driveTrain = new DrivetrainSubsystem(new DrivetrainIOSparkMAX());
+      driveTrain = new Drivetrain(new DrivetrainIOSparkMAX());
     }else{
-      driveTrain = new DrivetrainSubsystem(new DrivetrainIOSim());
+      driveTrain = new Drivetrain(new DrivetrainIOSim());
     }
 
 

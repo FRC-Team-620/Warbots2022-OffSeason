@@ -14,11 +14,11 @@ public class DrivetrainIOSparkMAX implements IDrivetrainIO {
     private final double kConversionFactor = 1;
 
     public DrivetrainIOSparkMAX() {
-        leftFollower = new CANSparkMax(Pins.CAN.driveLeftBack, MotorType.kBrushless);
-        leftLeader = new CANSparkMax(Pins.CAN.driveLeftFront, MotorType.kBrushless);
-        rightFollower = new CANSparkMax(Pins.CAN.driveRightBack, MotorType.kBrushless);
-        rightLeader = new CANSparkMax(Pins.CAN.driveRightFront, MotorType.kBrushless);
-        navx = new AHRS(Pins.navxPort);
+        leftFollower = new CANSparkMax(Pins.CAN.kDriveLeftBack, MotorType.kBrushless);
+        leftLeader = new CANSparkMax(Pins.CAN.kDriveLeftFront, MotorType.kBrushless);
+        rightFollower = new CANSparkMax(Pins.CAN.kDriveRightBack, MotorType.kBrushless);
+        rightLeader = new CANSparkMax(Pins.CAN.kDriveRightFront, MotorType.kBrushless);
+        navx = new AHRS(Pins.kNavxPort);
 
         rightFollower.follow(rightLeader);
         leftFollower.follow(leftLeader);
@@ -38,9 +38,9 @@ public class DrivetrainIOSparkMAX implements IDrivetrainIO {
 
     @Override
     public void updateHardwareOutputs(DrivetrainHardwareOutputs inputs) {
-        inputs.leftPosition = leftLeader.getEncoder().getPosition();
-        inputs.rightPosition = rightLeader.getEncoder().getPosition();
-        inputs.yaw = navx.getYaw(); //TODO: Look into getting fused yaw
+        inputs.leftPositionMeters = leftLeader.getEncoder().getPosition();
+        inputs.rightPositionMeters = rightLeader.getEncoder().getPosition();
+        inputs.yawDegrees = navx.getYaw(); //TODO: Look into getting fused yaw
         // TODO Auto-generated method stub
 
     }

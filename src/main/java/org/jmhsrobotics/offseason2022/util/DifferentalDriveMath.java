@@ -1,16 +1,10 @@
 package org.jmhsrobotics.offseason2022.util;
 
-/** Represents a left and right percentage. */
-public class WheelSpeeds {
-    public double left;
-    public double right;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive.WheelSpeeds;
 
-    public WheelSpeeds(double left, double right) {
-        this.left = left;
-        this.right = right;
-    }
+public class DifferentalDriveMath {
 
-    public static WheelSpeeds fromArcade(double baseSpeed, double turnSpeed) {
+    public static WheelSpeeds fromArcade(double baseSpeed, double turnSpeed) { 
         return new WheelSpeeds(baseSpeed + turnSpeed, baseSpeed - turnSpeed);
     }
 

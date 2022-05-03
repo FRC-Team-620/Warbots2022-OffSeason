@@ -21,5 +21,14 @@ public final class Main {
    */
   public static void main(String... args) {
     RobotBase.startRobot(Robot::new);
+
+    // Thread t =  new Thread( //How to start the robot without hanging the thread
+    //   () -> {
+    //     RobotBase.startRobot(Robot::new);
+    //   },
+    //   "test123");
+    // // t.setDaemon(true);
+    // t.start();
+    // System.out.println("Not hanging thread");
   }
 }

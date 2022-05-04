@@ -17,6 +17,6 @@ public class FiringPins extends SubsystemBase {
     @Override
     public void periodic() {
         io.updateHardwareOutputs(outputs);
-        Logger.getInstance().processInputs("Firing Pins", outputs);
+        Logger.getInstance().processInputs("FiringPins", outputs);
     }
 }

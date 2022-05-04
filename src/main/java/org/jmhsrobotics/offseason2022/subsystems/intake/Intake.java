@@ -2,6 +2,7 @@ package org.jmhsrobotics.offseason2022.subsystems.intake;
 
 import org.jmhsrobotics.offseason2022.Constants;
 import org.jmhsrobotics.offseason2022.subsystems.intake.IntakeIO.IntakeHardwareOutputs;
+import org.littletonrobotics.junction.Logger;
 
 import edu.wpi.first.math.filter.Debouncer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -21,6 +22,7 @@ public class Intake extends SubsystemBase {
     @Override
     public void periodic() {
         io.updateHardwareOutputs(outputs);
+        Logger.getInstance().processInputs("Intake", outputs);
         balldetected = debounce.calculate(outputs.intakeSwitch);
 
     }

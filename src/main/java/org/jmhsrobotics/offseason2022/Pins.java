@@ -16,6 +16,8 @@ public class Pins {
         public static final int kLeftClimberMotor = 7;
         public static final int kRightClimberMotor = 8;
 
+        public static final int kTurretMotor = 9;
+
     }
 
     public static class PWM {
@@ -33,6 +35,7 @@ public class Pins {
 
         public static final int kClimberSensor = 8; //TODO: Rename
 
+        public static final int kTurretCalibrationSwitch = 9;
     }
     public static SPI.Port kNavxPort = SPI.Port.kMXP;
     // TODO: Look into how to select the port for the navx

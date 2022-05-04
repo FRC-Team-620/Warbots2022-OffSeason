@@ -5,25 +5,29 @@ import org.littletonrobotics.junction.inputs.LoggableInputs;
 
 public interface WinchIO {
     public static class WinchHardwareOutputs implements LoggableInputs {
-        public double intakeRPM = 0.0;
-        public double innerIntakeRPM = 0.0;
-        public boolean intakeSwitch = false;
+        public double winchRotations = 0;
+        public boolean atRearLimit = false;
+        public boolean climberSensor = false; // TODO: Rename
 
         public void toLog(LogTable table) {
-            table.put("IntakeRPM", intakeRPM);
-            table.put("InnerIntakeRPM", innerIntakeRPM);
-            table.put("IntakeSwitch", intakeSwitch);
+            table.put("WinchRotations", winchRotations);
+            table.put("AtRearLimit", atRearLimit);
+            table.put("ClimberSensor", climberSensor);
+
         }
 
         public void fromLog(LogTable table) {
-            intakeRPM = table.getDouble("IntakeRPM", intakeRPM);
-            innerIntakeRPM = table.getDouble("InnerIntakeRPM", innerIntakeRPM);
-            intakeSwitch = table.getBoolean("IntakeSwitch", intakeSwitch);
+            winchRotations = table.getDouble("WinchRotations", winchRotations);
+            atRearLimit = table.getBoolean("AtRearLimit", atRearLimit);
+            climberSensor = table.getBoolean("climberSensor", climberSensor);
+
         }
     }
 
     /** Updates the set of loggable inputs. */
     public void updateHardwareOutputs(WinchHardwareOutputs outputs);
 
-   
+
+    public void set(double speed);
+
 }

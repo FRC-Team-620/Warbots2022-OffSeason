@@ -12,10 +12,10 @@ public class Pins {
 
         public static final int kInnerIntakeMotor = 10;
         public static final int kIntakeMotor = 11;
-        // public static final int rightBackMotorID = 1;
-        // public static final int rightFrontMotorID = 2;
-        // public static final int leftBackMotorID = 3;
-        // public static final int leftFrontMotorID = 4;
+
+        public static final int kLeftClimberMotor = 7;
+        public static final int kRightClimberMotor = 8;
+
     }
 
     public static class PWM {
@@ -30,6 +30,8 @@ public class Pins {
     }
     public static class DIO {
         public static final int kIntakeSwitch = 7;
+
+        public static final int kClimberSensor = 8; //TODO: Rename
 
     }
     public static SPI.Port kNavxPort = SPI.Port.kMXP;

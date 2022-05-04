@@ -1,8 +1,8 @@
 package org.jmhsrobotics.offseason2022.subsystems.flywheels;
 
 import org.jmhsrobotics.offseason2022.subsystems.flywheels.FlywheelsIO.FlywheelsHardwareOutputs;
+import org.littletonrobotics.junction.Logger;
 
-import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Flywheels extends SubsystemBase {
@@ -15,6 +15,7 @@ public class Flywheels extends SubsystemBase {
     @Override
     public void periodic() {
         io.updateHardwareOutputs(outputs);
+        Logger.getInstance().processInputs("Flywheels", outputs);
     }
 
     public void setRPM(double rpm){

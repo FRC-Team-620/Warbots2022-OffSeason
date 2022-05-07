@@ -24,12 +24,20 @@ public class Winch extends SubsystemBase {
         io.set(speed);
     }
 
-    public boolean getClimberSensor(){
+    public double getRotationRot() {
+        return outputs.positionRot;
+    }
+
+    public boolean getClimberSensor() {
         return outputs.climberSensor;
     }
 
-    public boolean atRearLimit(){
+    public boolean atRearLimit() {
         return outputs.atRearLimit;
+    }
+
+    public void setEncoderPostion(double rotations) {
+        io.setEncoderPostion(rotations);
     }
 
 }

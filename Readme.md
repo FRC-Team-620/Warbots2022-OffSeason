@@ -77,3 +77,39 @@ Unit tests:
 Preflight checks:
 - Hardware Checks. Attempt to use the sensors on the robot to validate that all hardware is functional.
 - Functionality/software checks?? Make sure drivers can control the robot. (Im not sure we need any formal code outside of a checklist for the students)
+
+## Progress
+Subystem Status Skelton and IO Done and implmeneted:
+- [X] winch
+- [ ] Turret
+- [ ] Inake
+- [ ] flywheels
+- [ ] firingPins
+- [ ] Drive
+- [ ] Climber Arms
+- [ ] LEDs
+
+Subsystem Simulations:
+Subystem Status Skelton and IO Done and implmeneted:
+- [ ] winch
+- [ ] Turret
+- [ ] Inake
+- [ ] flywheels
+- [ ] firingPins
+- [ ] Drive
+- [ ] Climber Arms
+- [ ] LEDs
+
+# Project Units:
+All sensor outputs should follow the following style when defining base units.
+
+Distance: Meters
+Power: Watts
+Current: Amps
+Rotational Position: Rotations -- TODO: may want to change to Radians
+Rotation Velocity: RPM --TODO: May want to change to Rads per second
+Temprature: Celcius
+
+
+# Can bus notes:
+https://www.hi-im.kim/canbus

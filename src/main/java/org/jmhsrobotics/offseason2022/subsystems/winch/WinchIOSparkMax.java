@@ -36,13 +36,25 @@ public class WinchIOSparkMax implements WinchIO {
     public void updateHardwareOutputs(WinchHardwareOutputs outputs) {
         outputs.atRearLimit = rearLimit.isPressed();
         outputs.climberSensor = climberSensor.get();
-        outputs.winchRotations = leftClimberMotor.getEncoder().getPosition(); // TODO: Set conversion factor?
+        outputs.positionRot = leftClimberMotor.getEncoder().getPosition();
+
+        outputs.velocityRPM = leftClimberMotor.getEncoder().getVelocity();
+        outputs.appliedDutyCycle = leftClimberMotor.getAppliedOutput();
+        outputs.currentAmps = new double[] {rightClimberMotor.getOutputCurrent(), leftClimberMotor.getOutputCurrent()};
+        outputs.tempCelcius = new double[] { rightClimberMotor.getMotorTemperature(),leftClimberMotor.getMotorTemperature() };
 
     }
 
     @Override
     public void set(double speed) {
         leftClimberMotor.set(speed);
+    }
+
+    @Override
+    public void setEncoderPostion(double rotations) {
+       leftClimberMotor.getEncoder().setPosition(rotations);
+       rightClimberMotor.getEncoder().setPosition(rotations);
+        
     }
 
 }

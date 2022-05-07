@@ -26,6 +26,7 @@ public class Intake extends SubsystemBase {
         balldetected = debounce.calculate(outputs.intakeSwitch);
 
     }
+    //Todo: Add Methods to control intake motors
 
     public void extend() {
         io.extendIntake();

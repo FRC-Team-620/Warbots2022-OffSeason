@@ -5,20 +5,35 @@ import org.littletonrobotics.junction.inputs.LoggableInputs;
 
 public interface IntakeIO {
     public static class IntakeHardwareOutputs implements LoggableInputs {
-        public double intakeRPM = 0.0;
-        public double innerIntakeRPM = 0.0;
         public boolean intakeSwitch = false;
 
+        public double intakeVelocityRPM = 0.0;
+        public double intakeAppliedDutyCycle = 0.0;
+
+        public double innerIntakeVelocityRPM = 0.0;
+        public double innerIntakeAppliedDutyCycle = 0.0;
+        public double[] currentAmps = new double[] {}; // TODO: Look into if we should not have these in arrays
+        public double[] tempCelcius = new double[] {};
+
         public void toLog(LogTable table) {
-            table.put("IntakeRPM", intakeRPM);
-            table.put("InnerIntakeRPM", innerIntakeRPM);
             table.put("IntakeSwitch", intakeSwitch);
+            table.put("IntakeVelocityRPM", intakeVelocityRPM);
+            table.put("IntakeAppliedDutyCycle", intakeAppliedDutyCycle);
+            table.put("InnerIntakeVelocityRPM", innerIntakeVelocityRPM);
+            table.put("InnerIntakeAppliedDutyCycle", innerIntakeAppliedDutyCycle);
+            table.put("CurrentAmps", currentAmps);
+            table.put("TempCelcius", tempCelcius);
         }
 
         public void fromLog(LogTable table) {
-            intakeRPM = table.getDouble("IntakeRPM", intakeRPM);
-            innerIntakeRPM = table.getDouble("InnerIntakeRPM", innerIntakeRPM);
+
             intakeSwitch = table.getBoolean("IntakeSwitch", intakeSwitch);
+            intakeVelocityRPM = table.getDouble("IntakeVelocityRPM", intakeVelocityRPM);
+            intakeAppliedDutyCycle = table.getDouble("IntakeAppliedDutyCycle", intakeAppliedDutyCycle);
+            innerIntakeVelocityRPM = table.getDouble("InnerIntakeVelocityRPM", innerIntakeVelocityRPM);
+            innerIntakeAppliedDutyCycle = table.getDouble("InnerIntakeAppliedDutyCycle", innerIntakeAppliedDutyCycle);
+            currentAmps = table.getDoubleArray("CurrentAmps", currentAmps);
+            tempCelcius = table.getDoubleArray("TempCelcius", tempCelcius);
         }
     }
 

@@ -29,8 +29,9 @@ public class IntakeIOSparkMax implements IntakeIO {
         intakeSwitch = new DigitalInput(Pins.DIO.kIntakeSwitch);
         intakeArmsMotor.restoreFactoryDefaults();
         intakeArmsMotor.setInverted(true);
-        intakeArmsMotor.setSmartCurrentLimit(35);  
-        // DoubleSolenoid test = new DoubleSolenoid(Pins.PCM.kPneumaticsModuleType,0,0); //TODO: Switch to double??
+        intakeArmsMotor.setSmartCurrentLimit(35);
+        // DoubleSolenoid test = new DoubleSolenoid(Pins.PCM.kPneumaticsModuleType,0,0);
+        // //TODO: Switch to double??
         intakeArmsVirtualSolenoidA = new Solenoid(Pins.PCM.kPneumaticsModuleType, Pins.PCM.kIntakeArmA);
         intakeArmsVirtualSolenoidB = new Solenoid(Pins.PCM.kPneumaticsModuleType, Pins.PCM.kIntakeArmB);
 
@@ -41,34 +42,45 @@ public class IntakeIOSparkMax implements IntakeIO {
     @Override
     public void updateHardwareOutputs(IntakeHardwareOutputs outputs) {
 
-        outputs.innerIntakeRPM = innerIntakeMotor.getEncoder().getVelocity();
-        outputs.intakeRPM = intakeArmsMotor.getEncoder().getVelocity();
         outputs.intakeSwitch = intakeSwitch.get();
+
+        outputs.innerIntakeAppliedDutyCycle = innerIntakeMotor.getAppliedOutput();
+        outputs.innerIntakeVelocityRPM = innerIntakeMotor.getEncoder().getVelocity();
+
+        outputs.intakeAppliedDutyCycle = intakeArmsMotor.getAppliedOutput();
+        outputs.intakeVelocityRPM = intakeArmsMotor.getEncoder().getVelocity();
+
+        outputs.currentAmps = new double[] { intakeArmsMotor.getOutputCurrent(), innerIntakeMotor.getOutputCurrent() };
+        outputs.tempCelcius = new double[] { intakeArmsMotor.getMotorTemperature(),
+                innerIntakeMotor.getMotorTemperature() };
 
     }
 
     @Override
     public void extendIntake() {
-        // TODO Auto-generated method stub
-        
+        intakeArmsVirtualSolenoidA.set(true);
+        intakeArmsVirtualSolenoidB.set(true);
+
     }
 
     @Override
     public void retractIntake() {
-        // TODO Auto-generated method stub
-        
+        intakeArmsVirtualSolenoidA.set(false);
+        intakeArmsVirtualSolenoidB.set(false);
+
     }
 
     @Override
     public void floatIntake() {
-        // TODO Auto-generated method stub
-        
+        intakeArmsVirtualSolenoidA.set(false);
+        intakeArmsVirtualSolenoidB.set(true);    
+
     }
 
     @Override
     public void setIntakeMotor(double speed) {
         intakeArmsMotor.set(speed);
-        
+
     }
 
     @Override

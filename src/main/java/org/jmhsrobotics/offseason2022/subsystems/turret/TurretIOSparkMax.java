@@ -14,8 +14,6 @@ public class TurretIOSparkMax implements TurretIO {
     private CANSparkMax turretMotor;
     private DigitalInput calibrationSwitch;
     private SparkMaxPIDController pidController;
-    // private final double kP = 0.038000, kI = 0.2, kD = 0.000400;// KI0.00004 kP =
-    // 0.060000, kI = 0.003000, TODO: Tune PID
 
     private final double countsToDegreesFactor = (1.0 / (5.23 * 5.23)) * (20.0 / 156.0) * 360.0;
 
@@ -29,14 +27,17 @@ public class TurretIOSparkMax implements TurretIO {
         turretMotor.setSmartCurrentLimit(18);
 
         pidController = turretMotor.getPIDController();
-        // pidController.setco
-        // pidController.setD(kP,kI,kD); //TODO move outside of this
     }
 
     @Override
     public void updateHardwareOutputs(TurretHardwareOutputs outputs) {
-        // TODO Auto-generated method stub
+        outputs.rotationDegrees = turretMotor.getEncoder().getPosition();
+        outputs.isCalibrationSwitch = calibrationSwitch.get();
 
+        outputs.velocityRPM = turretMotor.getEncoder().getVelocity(); // TODO: Update to degrees per second
+        outputs.appliedDutyCycle = turretMotor.getAppliedOutput();
+        outputs.currentAmps = new double[] { turretMotor.getOutputCurrent() };
+        outputs.tempCelcius = new double[] { turretMotor.getMotorTemperature() };
     }
 
     @Override
@@ -47,7 +48,7 @@ public class TurretIOSparkMax implements TurretIO {
 
     @Override
     public void setSetpoint(double degrees) {
-        pidController.setReference(degrees, ControlType.kPosition); //TODO verifiy
+        pidController.setReference(degrees, ControlType.kPosition); // TODO verifiy
 
     }
 
@@ -60,7 +61,18 @@ public class TurretIOSparkMax implements TurretIO {
 
     @Override
     public void setMaxIntegrator(double maxI) {
-        pidController.setIMaxAccum(maxI,0); //TODO look up slot meaning
+        pidController.setIMaxAccum(maxI, 0); // TODO look up slot meaning May not work
+    }
+
+    @Override
+    public void setBrakeMode(boolean enable) {
+        IdleMode mode = enable ? IdleMode.kBrake : IdleMode.kCoast;
+        turretMotor.setIdleMode(mode);
+    }
+
+    @Override
+    public void setEncoderPositionDegrees(double degrees) {
+        turretMotor.getEncoder().setPosition(degrees);
     }
 
 }

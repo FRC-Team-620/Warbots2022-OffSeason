@@ -81,7 +81,7 @@ Preflight checks:
 ## Progress
 Subystem Status Skelton and IO Done and implmeneted:
 - [X] winch
-- [ ] Turret
+- [X] Turret
 - [ ] Inake
 - [ ] flywheels
 - [ ] firingPins

@@ -5,19 +5,29 @@ import org.littletonrobotics.junction.inputs.LoggableInputs;
 
 public interface TurretIO {
     public static class TurretHardwareOutputs implements LoggableInputs {
-        private double rotationDegrees = 0;
-        private boolean isCalibrationSwitch = false;
+        public double rotationDegrees = 0;
+        public boolean isCalibrationSwitch = false;
+        public double velocityRPM = 0.0; // TODO: Change to DegreesPerSec or RadPerSec
+        public double appliedDutyCycle = 0.0;
+        public double[] currentAmps = new double[] {};
+        public double[] tempCelcius = new double[] {};
 
         public void toLog(LogTable table) {
-            // table.put("IntakeRPM", intakeRPM);
-            // table.put("InnerIntakeRPM", innerIntakeRPM);
-            // table.put("IntakeSwitch", intakeSwitch);
+            table.put("RotationDegrees", rotationDegrees);
+            table.put("IsCalibrationSwitch", isCalibrationSwitch);
+            table.put("VelocityRPM", velocityRPM);
+            table.put("AppliedDutyCycle", appliedDutyCycle);
+            table.put("CurrentAmps", currentAmps);
+            table.put("TempCelcius", tempCelcius);
         }
 
         public void fromLog(LogTable table) {
-            // intakeRPM = table.getDouble("IntakeRPM", intakeRPM);
-            // innerIntakeRPM = table.getDouble("InnerIntakeRPM", innerIntakeRPM);
-            // intakeSwitch = table.getBoolean("IntakeSwitch", intakeSwitch);
+            rotationDegrees = table.getDouble("RotationDegrees", rotationDegrees);
+            isCalibrationSwitch = table.getBoolean("IsCalibrationSwitch", isCalibrationSwitch);
+            velocityRPM = table.getDouble("VelocityRPM", velocityRPM);
+            appliedDutyCycle = table.getDouble("AppliedDutyCycle", appliedDutyCycle);
+            currentAmps = table.getDoubleArray("CurrentAmps", currentAmps);
+            tempCelcius = table.getDoubleArray("TempCelcius", tempCelcius);
         }
     }
 
@@ -26,10 +36,14 @@ public interface TurretIO {
 
     public void set(double speed);
 
+    public void setBrakeMode(boolean enable);
+
     public void setSetpoint(double degrees);
 
     public void setPID(double kP, double kI, double kD);
 
     public void setMaxIntegrator(double maxI);
+
+    public void setEncoderPositionDegrees(double degrees);
 
 }

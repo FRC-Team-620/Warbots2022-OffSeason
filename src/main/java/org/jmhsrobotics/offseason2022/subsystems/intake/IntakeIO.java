@@ -14,6 +14,7 @@ public interface IntakeIO {
         public double innerIntakeAppliedDutyCycle = 0.0;
         public double[] currentAmps = new double[] {}; // TODO: Look into if we should not have these in arrays
         public double[] tempCelcius = new double[] {};
+        //TODO Add feedback for intake arm state/position
 
         public void toLog(LogTable table) {
             table.put("IntakeSwitch", intakeSwitch);
